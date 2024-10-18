@@ -19,7 +19,7 @@ LIB = $(LIB_DIR)libft.a
 MLX_LIB = $(MLX_DIR)/build/libmlx42.a
 
 # Source files
-SRCS = $(addprefix $(SRC_DIR), main.c utils.c build.c map.c moves.c)
+SRCS = $(addprefix $(SRC_DIR), main.c utils.c build.c map.c keys.c rad.c positions.c)
 
 # Object files
 OBJS = $(patsubst $(SRC_DIR)%.c,$(OBJ_DIR)%.o,$(SRCS))

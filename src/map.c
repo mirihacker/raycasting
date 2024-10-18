@@ -6,7 +6,7 @@
 /*   By: smiranda <smiranda@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 15:11:21 by smiranda          #+#    #+#             */
-/*   Updated: 2024/10/18 16:33:14 by smiranda         ###   ########.fr       */
+/*   Updated: 2024/10/18 17:42:10 by smiranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,14 @@ static void	valid_components(t_game *game)
 			&& game->map_line[i] != 'S' && game->map_line[i] != 'E'
 			&& game->map_line[i] != 'W' && game->map_line[i] != '\n')
 			print_error("Invalid map.\n");
+		if (game->map_line[i] == 'N')
+			game->angle = 90;
+		else if (game->map_line[i] == 'S')
+			game->angle = 270;
+		else if (game->map_line[i] == 'E')
+			game->angle = 0;
+		else if (game->map_line[i] == 'W')
+			game->angle = 180;
 		i++;
 	}
 }
@@ -115,10 +123,8 @@ void get_map_array(t_game *game)
 
 void	read_map(char *file, t_game *game)
 {
-	size_t i = 0;
     get_map(file, game);
     get_dim(game);
-	// printf("%s", game->map_line);
     valid_components(game);
 	get_map_array(game);
 }

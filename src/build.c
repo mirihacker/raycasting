@@ -6,7 +6,7 @@
 /*   By: smiranda <smiranda@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 17:53:11 by smiranda          #+#    #+#             */
-/*   Updated: 2024/10/18 15:08:13 by smiranda         ###   ########.fr       */
+/*   Updated: 2024/10/18 18:35:47 by smiranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,14 +37,18 @@ void init_image(t_game *game)
 
 void build_image(t_game *game, int x, int y)
 {
-	// This assumes each tile size is 30x30 pixels.
 	if (game->map.grid[y][x] == '1')
 		mlx_image_to_window(game->mlx, game->image->wall, x * 30, y * 30);
 	else if (game->map.grid[y][x] == '0')
 		mlx_image_to_window(game->mlx, game->image->blank, x * 30, y * 30);
 	else if (game->map.grid[y][x] == 'N' || game->map.grid[y][x] == 'S'
 			|| game->map.grid[y][x] == 'E' || game->map.grid[y][x] == 'W')
-		mlx_image_to_window(game->mlx, game->image->character, x * 30, y * 30);
+		{
+			mlx_image_to_window(game->mlx, game->image->character, x * 30, y * 30);
+			game->x = x;
+			game->y = y;
+		}
+
 	else if (game->map.grid[y][x] == ' ')
 		mlx_image_to_window(game->mlx, game->image->empty, x * 30, y * 30);
 }
@@ -74,7 +78,7 @@ int start_game(t_game *game)
         print_error("Failed to initialize mlx.\n");
     init_image(game);
     set_image(game);
-    // mlx_key_hook(game->win, key_handler, game);
+    mlx_key_hook(game->mlx, key_handler, game);
     mlx_loop(game->mlx);
     return (0);
 }

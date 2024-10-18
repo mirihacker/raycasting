@@ -64,5 +64,18 @@ void				read_map(char *file, t_game *game);
 
 // build.c //
 int					start_game(t_game *game);
+void				set_image(t_game *game);
+
+// moves.c //
+void				key_handler(mlx_key_data_t keydata, void *param);
+
+// rad.c //
+float				radians(float degrees);
+
+// positions.c //
+void				update_display(t_game *game);
+void				mark_position(t_game *game);
+void				update_display(t_game *game);
+void				set_pos(t_game *game);
 
 #endif
