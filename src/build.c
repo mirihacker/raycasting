@@ -6,7 +6,7 @@
 /*   By: smiranda <smiranda@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 17:53:11 by smiranda          #+#    #+#             */
-/*   Updated: 2024/10/18 18:35:47 by smiranda         ###   ########.fr       */
+/*   Updated: 2024/10/19 15:45:25 by smiranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void build_image(t_game *game, int x, int y)
 	if (game->map.grid[y][x] == '1')
 		mlx_image_to_window(game->mlx, game->image->wall, x * 30, y * 30);
 	else if (game->map.grid[y][x] == '0')
-		mlx_image_to_window(game->mlx, game->image->blank, x * 30, y * 30);
+		mlx_image_to_window(game->mlx, game->image->blank, x * 10, y * 10);
 	else if (game->map.grid[y][x] == 'N' || game->map.grid[y][x] == 'S'
 			|| game->map.grid[y][x] == 'E' || game->map.grid[y][x] == 'W')
 		{

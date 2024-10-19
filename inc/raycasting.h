@@ -45,6 +45,7 @@ typedef struct s_game
 	float			dx;
 	float			dy;
 	float			angle;
+	char			orientation;
 	char			*map_line;
 	t_texture		*texture;
 	t_image			*image;
