@@ -6,7 +6,7 @@
 /*   By: smiranda <smiranda@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 15:11:21 by smiranda          #+#    #+#             */
-/*   Updated: 2024/10/19 15:53:28 by smiranda         ###   ########.fr       */
+/*   Updated: 2024/10/19 15:56:28 by smiranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,41 +77,6 @@ static void	valid_components(t_game *game)
 		i++;
 	}
 }
-
-// void get_map_array(t_game *game)
-// {
-// 	size_t i;
-// 	size_t j;
-// 	size_t k;
-
-// 	i = 0;
-// 	k = 0;
-// 	game->map.grid = (char **)safe_calloc(game->map.height, sizeof(char *));
-// 	while (i < game->map.height)
-// 	{
-// 		game->map.grid[i] = (char *)safe_empty(game->map.width + 1, sizeof(char));
-// 		j = 0;
-// 		while (j < game->map.width)
-// 		{
-// 			if (game->map_line[k] == '\n' || game->map_line[k] == '\0')
-// 			{	
-// 				while (j < game->map.width)
-// 				{
-// 					game->map.grid[i][j] = ' ';
-// 					j++;
-// 				}
-// 				break;
-// 			}
-// 			game->map.grid[i][j] = game->map_line[k];
-//             k++;
-//             j++;
-//         }
-// 		if (game->map_line[k] == '\n')
-// 			k++;
-// 		game->map.grid[i][j] = '\0';
-//         i++;
-//     }
-// }
 
 static void store_character(t_game *game, size_t row, size_t col)
 {

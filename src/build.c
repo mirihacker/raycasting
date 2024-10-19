@@ -6,7 +6,7 @@
 /*   By: smiranda <smiranda@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 17:53:11 by smiranda          #+#    #+#             */
-/*   Updated: 2024/10/19 15:45:25 by smiranda         ###   ########.fr       */
+/*   Updated: 2024/10/19 16:55:11 by smiranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,20 +37,21 @@ void init_image(t_game *game)
 
 void build_image(t_game *game, int x, int y)
 {
+	int tile;
+	int player_tile;
+	int offset;
+
+	tile = 30;
+	player_tile = 10;
+	offset = (tile - player_tile) / 2;
 	if (game->map.grid[y][x] == '1')
 		mlx_image_to_window(game->mlx, game->image->wall, x * 30, y * 30);
 	else if (game->map.grid[y][x] == '0')
-		mlx_image_to_window(game->mlx, game->image->blank, x * 10, y * 10);
-	else if (game->map.grid[y][x] == 'N' || game->map.grid[y][x] == 'S'
-			|| game->map.grid[y][x] == 'E' || game->map.grid[y][x] == 'W')
-		{
-			mlx_image_to_window(game->mlx, game->image->character, x * 30, y * 30);
-			game->x = x;
-			game->y = y;
-		}
-
+		mlx_image_to_window(game->mlx, game->image->blank, x * 30, y * 30);
 	else if (game->map.grid[y][x] == ' ')
 		mlx_image_to_window(game->mlx, game->image->empty, x * 30, y * 30);
+	if (x == game->x && y == game->y)
+		mlx_image_to_window(game->mlx, game->image->character, x * 30 + offset, y * 30 + offset);
 }
 
 void set_image(t_game *game)

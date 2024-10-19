@@ -6,7 +6,7 @@
 /*   By: smiranda <smiranda@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 12:32:29 by smiranda          #+#    #+#             */
-/*   Updated: 2024/10/18 19:11:47 by smiranda         ###   ########.fr       */
+/*   Updated: 2024/10/19 18:33:02 by smiranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,40 +14,38 @@
 
 void	move_forward(t_game *game)
 {
-	int new_x;
-	int new_y;
+	float new_x;
+	float new_y;
 
-	new_x = game->x + (int)game->dx;
-	new_y = game->y + (int)game->dy;
-	if (new_x >= 0 && new_x < (int)game->map.width
-		&& new_y >= 0 && new_y < (int)game->map.height
-		&& game->map.grid[new_y][new_x] == '0')
+	new_x = game->x + game->dx * MOVE_FACTOR;
+	new_y = game->y + game->dy * MOVE_FACTOR;
+	if (new_x >= 0 && new_x < (float)game->map.width
+		&& new_y >= 0 && new_y < (float)game->map.height
+		&& game->map.grid[(int)new_y][(int)new_x] == '0')
 	{
-		game->map.grid[(int)game->y][(int)game->x] = '0';
+		clear_player_pos(game);
 		game->x = new_x;
 		game->y = new_y;
-		set_pos(game);
+		update_player_pos(game);
 	}
-	update_display(game);
 }
 
 void	move_back(t_game *game)
 {
-	int new_x;
-	int new_y;
+	float new_x;
+	float new_y;
 
-	new_x = game->x - (int)game->dx;
-	new_y = game->y - (int)game->dy;
-	if (new_x >= 0 && new_x < (int)game->map.width
-		&& new_y >= 0 && new_y < (int)game->map.height
-		&& game->map.grid[new_y][new_x] == '0')
+	new_x = game->x - game->dx * MOVE_FACTOR;
+	new_y = game->y - game->dy * MOVE_FACTOR;
+	if (new_x >= 0 && new_x < (float)game->map.width
+		&& new_y >= 0 && new_y < (float)game->map.height
+		&& game->map.grid[(int)new_y][(int)new_x] == '0')
 	{
-		game->map.grid[(int)game->y][(int)game->x] = '0';
+		clear_player_pos(game);
 		game->x = new_x;
 		game->y = new_y;
-		set_pos(game);
+		update_player_pos(game);
 	}
-	update_display(game);
 }
 
 void	look_left(t_game *game)
@@ -85,4 +83,6 @@ void	key_handler(mlx_key_data_t keydata, void *param)
 		look_left(game);
 	else if (keydata.key == MLX_KEY_D && keydata.action == MLX_PRESS)
 		look_right(game);
+	render_player(game);
+	update_display(game);
 }
