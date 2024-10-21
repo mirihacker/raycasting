@@ -14,7 +14,10 @@
 
 # endif
 
-# define MOVE_FACTOR 0.5
+# define MOVE_FACTOR 0.1
+// # define SPEED 4
+// # define ROTATION_SPEED 0.05
+// # define POV 60
 
 typedef struct s_texture
 {
@@ -46,9 +49,13 @@ typedef struct s_game
 	float			y;
 	float			dx;
 	float			dy;
-	float			angle;
+	double			angle;
 	char			orientation;
 	char			*map_line;
+	bool			m_forward;
+	bool			m_back;
+	bool			l_left;
+	bool			l_right;
 	t_texture		*texture;
 	t_image			*image;
 	t_map			map;
@@ -72,6 +79,10 @@ void				build_image(t_game *game, int x, int y);
 
 // moves.c //
 void				key_handler(mlx_key_data_t keydata, void *param);
+void				move_forward(t_game *game);
+void				move_back(t_game *game);
+void				look_left(t_game *game);
+void				look_right(t_game *game);
 
 // rad.c //
 float				radians(float degrees);
@@ -80,8 +91,7 @@ float				radians(float degrees);
 void				update_display(t_game *game);
 void				mark_position(t_game *game);
 void				set_pos(t_game *game);
-void				clear_player_pos(t_game *game);
-void				update_player_pos(t_game *game);
 void				render_player(t_game *game);
+void				game_update(void *param);
 
 #endif

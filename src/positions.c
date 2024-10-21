@@ -6,7 +6,7 @@
 /*   By: smiranda <smiranda@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 19:12:30 by smiranda          #+#    #+#             */
-/*   Updated: 2024/10/19 18:36:53 by smiranda         ###   ########.fr       */
+/*   Updated: 2024/10/21 17:47:23 by smiranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,23 +31,36 @@ void	set_pos(t_game *game)
 	mark_position(game);
 }
 
+void render_player(t_game *game)
+{
+	int tile;
+	int play_tile;
+	int offset;
+
+	tile = 30;
+	play_tile = 10;
+	offset = (tile - play_tile) / 2;
+    mlx_image_to_window(game->mlx, game->image->character, (int)(game->x * tile) + offset, (int)(game->y * tile) + offset);
+}
+
 void	update_display(t_game *game)
 {
 	set_image(game);
+	render_player(game);
 }
 
-void clear_player_pos(t_game *game)
+void game_update(void *param)
 {
-    mlx_image_to_window(game->mlx, game->image->blank, (int)(game->x * 30), (int)(game->y * 30));
-}
+	t_game *game;
 
-void update_player_pos(t_game *game)
-{
-    clear_player_pos(game);
-    set_pos(game);
-}
-
-void render_player(t_game *game)
-{
-    mlx_image_to_window(game->mlx, game->image->character, (int)(game->x * 10), (int)(game->y * 10));
+	game = (t_game *)param;
+	if (game->m_forward)
+		move_forward(game);
+	if (game->m_back)
+        move_back(game);
+    if (game->l_left)
+        look_left(game);
+    if (game->l_right)
+        look_right(game);
+	update_display(game);
 }

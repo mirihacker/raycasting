@@ -6,7 +6,7 @@
 /*   By: smiranda <smiranda@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 15:11:21 by smiranda          #+#    #+#             */
-/*   Updated: 2024/10/19 15:56:28 by smiranda         ###   ########.fr       */
+/*   Updated: 2024/10/21 14:44:03 by smiranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,13 +83,13 @@ static void store_character(t_game *game, size_t row, size_t col)
 	game->x = col;
 	game->y = row;
 	if (game->map.grid[row][col] == 'N')
-		game->angle = 90;
+		game->angle = 3 * PI /  2;
 	else if (game->map.grid[row][col] == 'S')
-		game->angle = 270;
+		game->angle = PI / 2;
 	else if (game->map.grid[row][col] == 'E')
 		game->angle = 0;
 	else if (game->map.grid[row][col] == 'W')
-		game->angle = 180;
+		game->angle = PI;
 	game->map.grid[row][col] = '0';
 }
 

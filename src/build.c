@@ -6,7 +6,7 @@
 /*   By: smiranda <smiranda@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 17:53:11 by smiranda          #+#    #+#             */
-/*   Updated: 2024/10/19 16:55:11 by smiranda         ###   ########.fr       */
+/*   Updated: 2024/10/21 17:37:04 by smiranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,7 @@ void build_image(t_game *game, int x, int y)
 		mlx_image_to_window(game->mlx, game->image->blank, x * 30, y * 30);
 	else if (game->map.grid[y][x] == ' ')
 		mlx_image_to_window(game->mlx, game->image->empty, x * 30, y * 30);
-	if (x == game->x && y == game->y)
-		mlx_image_to_window(game->mlx, game->image->character, x * 30 + offset, y * 30 + offset);
+	render_player(game);
 }
 
 void set_image(t_game *game)
@@ -80,6 +79,7 @@ int start_game(t_game *game)
     init_image(game);
     set_image(game);
     mlx_key_hook(game->mlx, key_handler, game);
+	mlx_loop_hook(game->mlx, game_update, game);
     mlx_loop(game->mlx);
     return (0);
 }

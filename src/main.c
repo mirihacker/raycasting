@@ -6,7 +6,7 @@
 /*   By: smiranda <smiranda@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 14:59:23 by smiranda          #+#    #+#             */
-/*   Updated: 2024/10/18 17:05:14 by smiranda         ###   ########.fr       */
+/*   Updated: 2024/10/21 17:47:54 by smiranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ static void	init_vars(t_game *game)
 {
     game->x = 0;
     game->y = 0;
-    game->dx = cos(radians(game->angle));
-    game->dy = -sin(radians(game->angle));
+    game->dx = cos(game->angle);
+    game->dy = sin(game->angle);
     game->angle = 0;
     game->map.width = 0;
     game->map.height = 0;
